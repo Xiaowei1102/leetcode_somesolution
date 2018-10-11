@@ -1,0 +1,22 @@
+class Solution:
+    # define a two string comparision funciton
+    def LCP(self, str1, str2):
+        i = 0
+        while(str1[i] == str2[i]):
+            i += 1
+            # this part is to prevent the Null pointer ugh
+            if i == len(str1) or i == len(str2):
+                break
+        if i == 0:
+            return 'no prefix match'
+        else:
+            return str1[ : i]
+    # use previous defined function to pass the LCP function
+    def longestCommonPrefix(self, strs):
+        x = strs[0]
+        for i in range(0, len(strs)-1):
+            x = self.LCP(x, strs[i + 1])
+            if x == 'no prefix match':
+                return x
+                break
+        return x   
