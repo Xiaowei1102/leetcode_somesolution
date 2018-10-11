@@ -1,0 +1,20 @@
+class Solution:
+    def longestCommonPrefix(self, strs): # use 2d array to compare each word's first letter and then second and go on
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        exit_flag = False
+        for j in range(0, len(strs[0])):
+            for i in range(0, len(strs)-1):
+                if strs[i][j] != strs[i+1][j]:
+                    index = j
+                    exit_flag = True   # this exit flag is a good use.
+                    break
+            if exit_flag == True:
+                break
+        
+        if index == 0:
+            return ""
+        else:
+            return strs[0][0 : index]
