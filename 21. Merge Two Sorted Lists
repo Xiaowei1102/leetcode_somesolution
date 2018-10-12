@@ -1,0 +1,36 @@
+class Node:
+    def __init__(self, value, next = None):
+        self.value = value
+        self.next = next
+    def deleteHead(self):
+        self = self.next
+    def add(self, x):
+        # compare to the first item
+        if x <= self.value:
+            y = Node(x, self)
+            return y
+        # if bigger than first time, keep searching
+        p = self
+        while(p.next != None):
+            if x <= p.next.value:
+                y = Node(x, p.next)
+                p.next = y
+                return self
+            p = p.next
+        # if program excutes up to here, means, x is the largetst number
+        y = Node(x)
+        p.next = y
+        return self
+
+class Solution:
+    def mergeTwoLists(self, l1, l2):
+        while(l1 != None):
+            l2 = l2.add(l1.value)
+            l1 = l1.next
+        return l2
+        
+l1 = Node('1', Node('3', Node('5', Node('7'))))
+l2 = Node('0', Node('2', Node('4')))
+s = Solution()
+p = s.mergeTwoLists(l1, l2)
+print(p.next.next.next.value)
